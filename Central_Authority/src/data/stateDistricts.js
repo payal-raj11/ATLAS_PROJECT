@@ -1,0 +1,165 @@
+export const stateDistricts = {
+  Bihar: [
+    "Araria",
+    "Arwal",
+    "Aurangabad",
+    "Banka",
+    "Begusarai",
+    "Bhagalpur",
+    "Bhojpur",
+    "Buxar",
+    "Darbhanga",
+    "East Champaran",
+    "Gaya",
+    "Gopalganj",
+    "Jamui",
+    "Jehanabad",
+    "Kaimur",
+    "Katihar",
+    "Khagaria",
+    "Kishanganj",
+    "Lakhisarai",
+    "Madhepura",
+    "Madhubani",
+    "Munger",
+    "Muzaffarpur",
+    "Nalanda",
+    "Nawada",
+    "Patna",
+    "Purnia",
+    "Rohtas",
+    "Saharsa",
+    "Samastipur",
+    "Saran",
+    "Sheikhpura",
+    "Sheohar",
+    "Sitamarhi",
+    "Siwan",
+    "Supaul",
+    "Vaishali",
+    "West Champaran"
+  ],
+
+  Odisha: [
+    "Angul",
+    "Balangir",
+    "Balasore",
+    "Bargarh",
+    "Bhadrak",
+    "Boudh",
+    "Cuttack",
+    "Deogarh",
+    "Dhenkanal",
+    "Gajapati",
+    "Ganjam",
+    "Jagatsinghpur",
+    "Jajpur",
+    "Jharsuguda",
+    "Kalahandi",
+    "Kandhamal",
+    "Kendrapara",
+    "Kendujhar",
+    "Khordha",
+    "Koraput",
+    "Malkangiri",
+    "Mayurbhanj",
+    "Nabarangpur",
+    "Nayagarh",
+    "Nuapada",
+    "Puri",
+    "Rayagada",
+    "Sambalpur",
+    "Subarnapur",
+    "Sundargarh"
+  ],
+
+  "Uttar Pradesh": [
+    "Agra",
+    "Aligarh",
+    "Ayodhya",
+    "Azamgarh",
+    "Bareilly",
+    "Ghaziabad",
+    "Gorakhpur",
+    "Kanpur Nagar",
+    "Lucknow",
+    "Mathura",
+    "Meerut",
+    "Prayagraj",
+    "Varanasi"
+  ],
+
+  Maharashtra: [
+    "Ahmednagar",
+    "Amravati",
+    "Aurangabad",
+    "Mumbai City",
+    "Mumbai Suburban",
+    "Nagpur",
+    "Nashik",
+    "Pune",
+    "Solapur",
+    "Thane",
+    "Wardha"
+  ],
+
+  "Tamil Nadu": [
+    "Chennai",
+    "Coimbatore",
+    "Madurai",
+    "Salem",
+    "Thanjavur",
+    "Tiruchirappalli",
+    "Tirunelveli",
+    "Vellore"
+  ],
+
+  Karnataka: [
+    "Bengaluru Urban",
+    "Bengaluru Rural",
+    "Belagavi",
+    "Dharwad",
+    "Mangaluru",
+    "Mysuru",
+    "Shivamogga",
+    "Tumakuru"
+  ],
+
+  Gujarat: [
+    "Ahmedabad",
+    "Gandhinagar",
+    "Rajkot",
+    "Surat",
+    "Vadodara",
+    "Navsari"
+  ],
+
+  Rajasthan: [
+    "Ajmer",
+    "Bikaner",
+    "Jaipur",
+    "Jaisalmer",
+    "Jodhpur",
+    "Kota",
+    "Udaipur"
+  ],
+
+  "Madhya Pradesh": [
+    "Bhopal",
+    "Gwalior",
+    "Indore",
+    "Jabalpur",
+    "Ujjain",
+    "Sagar"
+  ],
+
+  Assam: [
+    "Dibrugarh",
+    "Guwahati",
+    "Jorhat",
+    "Kamrup",
+    "Lakhimpur",
+    "Sivasagar",
+    "Tinsukia"
+  ]
+};
