@@ -1,0 +1,26 @@
+[data-theme="light"] {
+  --background: #f1f5f9;
+  --sidebar: #ffffff;
+  --header: #ffffff;
+
+  --surface: #ffffff;
+  --surface-hover: #f8fafc;
+  --surface-secondary: #f6f9fc;
+
+  --border: #d8e1eb;
+  --border-light: #e6edf4;
+
+  --text-primary: #152238;
+  --text-secondary: #58708d;
+  --text-muted: #7d8ea3;
+
+  --input-bg: #ffffff;
+
+  --table-header: #f7faff;
+  --table-row-hover: #f6faff;
+
+  --progress-bg: #dfe8f2;
+
+  --shadow:
+    0 6px 20px rgba(28, 52, 84, 0.06);
+}

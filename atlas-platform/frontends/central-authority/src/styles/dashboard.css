@@ -1,0 +1,2474 @@
+/* =========================================================
+   ATLAS — CENTRAL AUTHORITY DASHBOARD
+   ========================================================= */
+
+:root {
+
+  /* Categorical series (dark surface steps — default theme) */
+  --series-1: #3987e5;   /* blue     */
+  --series-2: #d95926;   /* orange   */
+  --series-3: #199e70;   /* aqua     */
+  --series-4: #c98500;   /* yellow   */
+  --series-5: #d55181;   /* magenta  */
+  --series-6: #008300;   /* green    */
+
+  --gridline: var(--border-color);
+
+}
+
+
+body.light-theme {
+
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --series-5: #e87ba4;
+  --series-6: #059669;
+
+}
+
+
+.central-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+/* ---------- HEADER BAR ---------- */
+
+.dashboard-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+
+.dashboard-header-bar h2 {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+}
+
+
+.dashboard-header-bar p {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  margin-top: 0.3rem;
+}
+
+
+.dashboard-header-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+
+.fy-select {
+  height: 34px;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: 6px;
+  padding: 0 0.6rem;
+  font-size: 0.72rem;
+}
+
+
+/* ---------- GIS MAP SLOT ---------- */
+
+.gis-map-slot {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1.1rem 1.25rem;
+  box-shadow: 0 1px 2px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+
+.gis-map-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+
+.gis-map-header h3 {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+
+.gis-map-header span {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+
+.gis-mini-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.6rem;
+}
+
+@media (max-width: 900px) {
+  .gis-mini-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+.gis-mini-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+
+  padding: 0.55rem 0.7rem;
+}
+
+
+.gis-mini-stat span {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+}
+
+
+.gis-mini-stat strong {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+
+.gis-filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+
+.gis-filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+
+.gis-filters select {
+  height: 32px;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: 6px;
+  padding: 0 0.5rem;
+  font-size: 0.7rem;
+  min-width: 180px;
+}
+
+
+.gis-map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+
+.gis-map-legend span {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+
+.gis-map-legend i {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+
+.gis-map-loading {
+  height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+
+.gis-leaflet-wrap {
+  position: relative;
+}
+
+.gis-empty-state {
+  height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  background-color: var(--bg-input);
+  border: 1px dashed var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.gis-empty-state-compact {
+  height: 240px;
+}
+
+
+.gis-leaflet-map {
+  height: 480px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+
+/* Compact embed — used to drop the real parcel map into other Land &
+   Impact tabs without the filters/stats/legend chrome of the full
+   dedicated GIS Map page. */
+.gis-map-slot-compact {
+  padding: 1rem 1.1rem;
+}
+
+.gis-leaflet-wrap-compact .gis-leaflet-map {
+  height: 240px;
+}
+
+
+.gis-parcel-panel {
+  position: absolute;
+  z-index: 1000;
+  top: 56px;
+  right: 14px;
+  width: 280px;
+  max-height: calc(100% - 70px);
+  overflow-y: auto;
+
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+
+  padding: 1rem;
+  box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+
+.gis-parcel-panel h4 {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  margin: 0 1.2rem 0.5rem 0;
+}
+
+
+.gis-status-badge {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  margin-bottom: 0.7rem;
+}
+
+
+.gis-parcel-panel dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 0.5rem;
+  font-size: 0.66rem;
+}
+
+
+.gis-parcel-panel dt {
+  color: var(--text-muted);
+}
+
+
+.gis-parcel-panel dd {
+  color: var(--text-primary);
+  text-align: right;
+}
+
+
+.gis-parcel-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.gis-parcel-close:hover {
+  color: var(--text-primary);
+}
+
+
+/* Square parcel markers (Leaflet divIcon — global, not module-scoped) */
+
+.parcel-marker span {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+}
+
+
+.basemap-toggle {
+  position: absolute;
+  z-index: 1000;
+  top: 12px;
+  right: 14px;
+
+  display: flex;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+
+.basemap-btn {
+  border: none;
+  background: transparent;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.basemap-btn + .basemap-btn {
+  border-left: 1px solid var(--border-color);
+}
+
+.basemap-btn-active {
+  background-color: var(--accent-green);
+  color: #fff;
+}
+
+
+/* ---------- KPI CARDS ---------- */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.85rem;
+}
+
+@media (max-width: 1200px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+.dashboard-grid-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+@media (max-width: 1200px) {
+  .dashboard-grid-5 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .dashboard-grid-5 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+.kpi-clickable {
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.kpi-clickable:hover {
+  border-color: var(--accent-green-border);
+  transform: translateY(-1px);
+}
+
+
+.kpi-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+
+  padding: 0.9rem 1rem;
+
+  box-shadow: 0 1px 2px var(--shadow-color);
+}
+
+
+.kpi-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+
+.kpi-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+
+.kpi-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+
+.kpi-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+
+.kpi-note {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+}
+
+
+.kpi-warning .kpi-value {
+  color: #f59e0b;
+}
+
+
+.kpi-good .kpi-value {
+  color: var(--accent-green);
+}
+
+
+/* ---------- PANELS ---------- */
+
+.dashboard-lower-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.dashboard-lower-grid.two-col {
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 900px) {
+  .dashboard-lower-grid.two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.dashboard-panel {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+
+  padding: 1.1rem 1.25rem;
+
+  box-shadow: 0 1px 2px var(--shadow-color);
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+
+.dashboard-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+
+.dashboard-panel-header h3 {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+
+.dashboard-panel-header span {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+
+.panel-link {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--accent-green);
+}
+
+.panel-link:hover {
+  color: var(--accent-green-hover);
+}
+
+
+/* ---------- CHART ENTRANCE ANIMATIONS ---------- */
+/* Shared, one-shot "grow/draw in on mount" treatment used by every
+   chart type (donut, column, line, combo). Runs once when a chart
+   first mounts — hover/click state changes afterward don't touch
+   these classes, so nothing replays or fights with the interactive
+   states (hover-pop, active dimming, etc), which are driven by
+   separate inline styles/attributes on the same elements. */
+
+@keyframes chartBarGrow {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+@keyframes chartLineDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes chartAreaGrow {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+@keyframes chartDotPop {
+  from { opacity: 0; transform: scale(0); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes chartDonutPop {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.chart-bar-grow {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: chartBarGrow 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.chart-line-draw {
+  animation: chartLineDraw 0.9s ease-out both;
+}
+
+.chart-area-grow {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: chartAreaGrow 0.7s ease-out both;
+}
+
+.chart-dot-pop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: chartDotPop 0.35s ease-out both;
+}
+
+.chart-donut-pop {
+  transform-origin: 50% 50%;
+  animation: chartDonutPop 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chart-bar-grow,
+  .chart-line-draw,
+  .chart-area-grow,
+  .chart-dot-pop,
+  .chart-donut-pop {
+    animation: none !important;
+  }
+}
+
+
+/* ---------- DONUT CHART ---------- */
+
+.donut-chart {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+
+.donut-svg-wrap {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  flex-shrink: 0;
+}
+
+.donut-svg-vibrant {
+  filter: saturate(1.35) brightness(1.04);
+}
+
+.donut-ring-pop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: chartDonutPop 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .donut-ring-pop {
+    animation: none !important;
+  }
+}
+
+
+.donut-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.donut-center-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+
+.donut-center-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+
+.donut-legend-wrap {
+  flex: 1;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+
+.donut-legend {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+
+.donut-chart-detail {
+  min-height: 2.4em;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.donut-chart-detail strong {
+  color: var(--text-primary);
+  font-size: 0.72rem;
+}
+
+
+.donut-legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+}
+
+
+.donut-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+
+.donut-legend-label {
+  color: var(--text-primary);
+  flex: 1;
+}
+
+
+.donut-legend-value {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+
+.donut-segment-clickable {
+  cursor: pointer;
+}
+
+
+.donut-legend-clickable {
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 0.15rem 0.3rem;
+  margin: -0.15rem -0.3rem;
+}
+
+.donut-legend-clickable:hover {
+  background-color: var(--bg-input);
+}
+
+
+.land-ownership-note {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+
+/* ---------- ACTION CENTER ---------- */
+
+.action-center-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+
+.action-center-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+
+  padding: 0.65rem 0.8rem;
+
+  font-size: 0.72rem;
+  color: var(--text-primary);
+}
+
+
+.action-center-item:hover {
+  border-color: var(--accent-green-border);
+  background-color: var(--accent-green-bg);
+}
+
+
+.action-center-icon {
+  font-size: 0.95rem;
+}
+
+
+.action-center-text {
+  flex: 1;
+}
+
+
+.action-center-text strong {
+  color: var(--text-primary);
+}
+
+
+.action-center-arrow {
+  color: var(--text-muted);
+}
+
+
+/* ---------- STACKED BAR ---------- */
+
+.stacked-bar-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+
+.stacked-bar {
+  display: flex;
+  height: 14px;
+  border-radius: 7px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+
+.stacked-bar-segment {
+  height: 100%;
+}
+
+
+.stacked-bar-legend {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+
+.stacked-bar-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+
+.stacked-bar-legend-item strong {
+  color: var(--text-primary);
+}
+
+
+.stacked-bar-swatch {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+}
+
+
+/* ---------- QUICK ACTIONS ---------- */
+
+.quick-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+@media (max-width: 500px) {
+  .quick-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.quick-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+
+  padding: 0.6rem 0.75rem;
+
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+
+.quick-action-btn:hover {
+  border-color: var(--accent-green-border);
+  background-color: var(--accent-green-bg);
+  color: var(--accent-green);
+}
+
+
+.quick-action-icon {
+  font-size: 0.9rem;
+}
+
+
+/* ---------- PANEL STAT CALLOUT (bar-chart panel headline number) ---------- */
+
+.panel-stat-callout {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+
+.panel-stat-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+
+.panel-stat-label {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+
+/* ---------- HORIZONTAL BAR LISTS ---------- */
+
+.bar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+
+.bar-list-compact {
+  gap: 0.45rem;
+}
+
+
+.bar-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 200px) 1fr 48px;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+
+.bar-row-clickable {
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 0.15rem 0.3rem;
+  margin: -0.15rem -0.3rem;
+}
+
+.bar-row-clickable:hover {
+  background-color: var(--bg-input);
+}
+
+
+.bar-row-label {
+  font-size: 0.7rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.bar-row-track {
+  height: 8px;
+  border-radius: 4px;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+
+.bar-row-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+
+.bar-row-value {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* ---------- LAND & IMPACT ---------- */
+
+.summary-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+
+.summary-hero-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+
+.summary-hero-label {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+}
+
+
+.impact-grid-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+@media (max-width: 900px) {
+  .impact-grid-5 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+.impact-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+
+  padding: 0.6rem 0.7rem;
+}
+
+
+.impact-icon {
+  font-size: 1rem;
+}
+
+
+.impact-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+
+.impact-label {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+}
+
+
+/* ---------- FUNDING OVERVIEW ---------- */
+
+.funding-figures {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+
+.funding-figure {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+
+.funding-figure-label {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+
+.funding-figure-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+
+.funding-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  font-size: 0.7rem;
+  color: var(--text-muted);
+
+  background-color: var(--accent-green-bg);
+  border: 1px solid var(--accent-green-border);
+  border-radius: 8px;
+
+  padding: 0.5rem 0.7rem;
+}
+
+
+.funding-alert strong {
+  color: var(--text-primary);
+}
+
+
+/* ---------- ATTENTION TABLE ---------- */
+
+.attention-table-wrap {
+  overflow-x: auto;
+}
+
+
+.attention-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.72rem;
+}
+
+
+.attention-table th {
+  text-align: left;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+
+.attention-table td {
+  padding: 0.6rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+
+.attention-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+.attention-review-btn {
+  display: inline-block;
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: var(--accent-green);
+  border: 1px solid var(--accent-green-border);
+  background-color: var(--accent-green-bg);
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+}
+
+
+.attention-review-btn:hover {
+  background-color: var(--accent-green);
+  color: #fff;
+}
+
+
+.attention-empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 1rem;
+}
+
+
+/* ---------- ACTIVITY FEED ---------- */
+
+.activity-feed {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+
+.activity-item {
+  display: flex;
+  gap: 0.6rem;
+}
+
+
+.activity-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-green);
+  margin-top: 0.3rem;
+  flex-shrink: 0;
+}
+
+
+.activity-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+
+.activity-time {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+}
+
+
+.activity-project {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+
+.activity-desc {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+
+/* ---------- WORKFLOW STRIP ---------- */
+
+.workflow-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+
+.workflow-stage {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+
+.workflow-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+
+  padding: 0.55rem 0.8rem;
+  min-width: 90px;
+}
+
+
+.workflow-node-clickable {
+  cursor: pointer;
+}
+
+.workflow-node-clickable:hover {
+  border-color: var(--accent-green-border);
+  background-color: var(--accent-green-bg);
+}
+
+
+.workflow-count {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent-green);
+}
+
+
+.workflow-label {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+
+.workflow-arrow {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+
+/* ---------- LINE CHART ---------- */
+
+.line-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+
+.line-chart-svg {
+  width: 100%;
+  height: 180px;
+  display: block;
+}
+
+
+.line-chart-labels {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 28px;
+  font-size: 0.6rem;
+  color: var(--text-muted);
+}
+
+
+.line-chart-legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  font-size: 0.66rem;
+  color: var(--text-muted);
+}
+
+.line-chart-legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.line-chart-legend-swatch {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+
+.line-chart-detail {
+  min-height: 2.2em;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.line-chart-detail strong {
+  color: var(--text-primary);
+  font-size: 0.72rem;
+}
+
+
+.line-chart-last-label {
+  font-size: 11px;
+  font-weight: 700;
+  fill: var(--text-primary);
+}
+
+
+/* ---------- WORKFLOW CHART ---------- */
+
+.workflow-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+
+.workflow-chart-svg {
+  width: 100%;
+  height: 200px;
+  display: block;
+  overflow: visible;
+}
+
+.workflow-bar-2d {
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-box: fill-box;
+  transform-origin: bottom center;
+}
+
+.workflow-bar-2d:hover {
+  transform: translateY(-8px) scale(1.045);
+}
+
+.workflow-bar-2d .workflow-bar-face {
+  transition: filter 0.18s ease;
+}
+
+.workflow-bar-2d:hover .workflow-bar-face {
+  filter: brightness(1.12) saturate(1.15);
+}
+
+.workflow-bar-shadow {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.workflow-bar-2d:hover .workflow-bar-shadow {
+  opacity: 0.45;
+}
+
+.workflow-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.9rem;
+  padding-top: 0.2rem;
+}
+
+.workflow-chart-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.64rem;
+  color: var(--text-muted);
+  font-weight: 650;
+}
+
+.workflow-chart-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* entrance animations — bars grow in, then the value line/dots draw
+   on top of them a moment later. Paced a touch slower than the app's
+   other chart entrances since this one has more going on at once. */
+
+@keyframes workflowBarGrow {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+.workflow-bar-face {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: workflowBarGrow 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* held at the animation's "from" state until the chart scrolls into
+   view — see hooks/useInViewOnce.js */
+.workflow-bar-pending {
+  transform: scaleY(0);
+  transform-box: fill-box;
+  transform-origin: bottom;
+}
+
+.workflow-value-line-pending {
+  opacity: 0;
+}
+
+.workflow-value-dot-pending {
+  opacity: 0;
+  transform: scale(0);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes workflowLineFade {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 0.92; transform: translateY(0); }
+}
+
+.workflow-value-line {
+  animation: workflowLineFade 0.6s ease-out 1.05s both;
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.45));
+}
+
+@keyframes workflowDotPop {
+  from { opacity: 0; transform: scale(0); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.workflow-value-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: workflowDotPop 0.4s ease-out both;
+}
+
+
+
+/* ---------- LAND COMPOSITION — LEADER-LINE RING ---------- */
+
+.land-ring-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0 0.1rem;
+}
+
+.land-ring-svg {
+  width: 100%;
+  max-width: 560px;
+  height: 300px;
+  overflow: visible;
+}
+
+@keyframes landRingPop {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.land-ring-segment {
+  animation: landRingPop 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: filter 0.15s ease;
+  cursor: default;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* held until the chart scrolls into view — see hooks/useInViewOnce.js */
+.land-ring-segment-pending {
+  opacity: 0;
+  transform: scale(0.85);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.land-ring-leader-pending {
+  opacity: 0;
+}
+
+.land-ring-label-group-pending {
+  opacity: 0;
+}
+
+.land-ring-segment:hover {
+  filter: brightness(1.18) drop-shadow(0 0 6px currentColor);
+}
+
+@keyframes landLeaderDraw {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.land-ring-leader {
+  animation: landLeaderDraw 0.35s ease-out both;
+}
+
+@keyframes landLabelFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.land-ring-label-group {
+  animation: landLabelFade 0.46s ease-out both;
+}
+
+.land-ring-label-title {
+  font-size: 11.5px;
+  font-weight: 800;
+  fill: var(--text-primary);
+}
+
+.land-ring-label-sub {
+  font-size: 9.5px;
+  fill: var(--text-muted);
+}
+
+.land-ring-center-value {
+  font-size: 20px;
+  font-weight: 800;
+  fill: var(--text-primary);
+}
+
+.land-ring-center-label {
+  font-size: 9.5px;
+  fill: var(--text-muted);
+}
+
+
+
+/* ---------- DOCUMENT VERIFICATION — STACKED RINGS ---------- */
+
+.doc-rings-wrap {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0.3rem 0;
+}
+
+.doc-rings-svg {
+  width: 220px;
+  height: 220px;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+@keyframes docRingPop {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.doc-ring-arc {
+  animation: docRingPop 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: filter 0.15s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* held until the chart scrolls into view — see hooks/useInViewOnce.js */
+.doc-ring-arc-pending {
+  opacity: 0;
+  transform: scale(0.85);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.doc-ring-arc:hover {
+  filter: brightness(1.15) drop-shadow(0 0 5px currentColor);
+}
+
+.doc-rings-center-value {
+  font-size: 22px;
+  font-weight: 800;
+  fill: var(--text-primary);
+}
+
+.doc-rings-center-label {
+  font-size: 9.5px;
+  fill: var(--text-muted);
+}
+
+.doc-rings-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-width: 220px;
+}
+
+.doc-rings-legend-row {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.74rem;
+  color: var(--text-primary);
+  font-weight: 650;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.doc-rings-legend-row:hover {
+  background: var(--bg-input);
+  border-color: var(--border-color);
+}
+
+.doc-rings-legend-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.doc-rings-legend-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.doc-rings-legend-sub {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.doc-rings-legend-count {
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+
+
+.workflow-chart-count {
+  font-size: 12px;
+  font-weight: 700;
+  fill: var(--text-primary);
+}
+
+
+.workflow-chart-label {
+  font-size: 10px;
+  fill: var(--text-muted);
+}
+
+
+.workflow-chart-detail {
+  min-height: 2.4em;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.workflow-chart-detail strong {
+  color: var(--text-primary);
+  font-size: 0.72rem;
+}
+
+
+/* ---------- COLUMN CHART ---------- */
+
+.column-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.column-chart-svg {
+  width: 100%;
+  height: 190px;
+  display: block;
+}
+
+.column-chart-value {
+  font-size: 11px;
+  font-weight: 700;
+  fill: var(--text-primary);
+}
+
+.column-chart-label {
+  font-size: 10px;
+  fill: var(--text-muted);
+}
+
+.column-chart-detail {
+  min-height: 2.4em;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.column-chart-detail strong {
+  color: var(--text-primary);
+  font-size: 0.72rem;
+}
+
+
+/* ---------- BULLET CHART ---------- */
+
+.bullet-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+
+.bullet-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  cursor: pointer;
+  padding: 0.25rem 0.35rem;
+  margin: -0.25rem -0.35rem;
+  border-radius: 6px;
+}
+
+.bullet-row:hover {
+  background-color: var(--bg-input);
+}
+
+
+.bullet-row-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+}
+
+.bullet-row-label {
+  color: var(--text-primary);
+}
+
+.bullet-row-value {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+
+.bullet-track {
+  position: relative;
+  height: 16px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+
+.bullet-band {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 33.333%;
+}
+
+.bullet-band-1 {
+  left: 0;
+  background-color: var(--bg-input);
+}
+
+.bullet-band-2 {
+  left: 33.333%;
+  background-color: color-mix(in srgb, var(--bg-input) 55%, var(--border-color));
+}
+
+.bullet-band-3 {
+  left: 66.666%;
+  background-color: color-mix(in srgb, var(--bg-input) 25%, var(--border-color));
+}
+
+
+.bullet-measure {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  height: 6px;
+  border-radius: 3px;
+  transition: width 0.2s ease;
+}
+
+
+.bullet-target {
+  position: absolute;
+  top: -2px;
+  width: 2px;
+  height: calc(100% + 4px);
+  background-color: var(--text-primary);
+}
+
+
+.bullet-row-detail {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+}
+
+
+/* ---------- DOT PLOT ---------- */
+
+.dot-plot {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+
+.dot-plot-row {
+  display: grid;
+  grid-template-columns: minmax(80px, 140px) 1fr 64px;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.dot-plot-row-clickable {
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 0.2rem 0.3rem;
+  margin: -0.2rem -0.3rem;
+}
+
+.dot-plot-row-clickable:hover {
+  background-color: var(--bg-input);
+}
+
+
+.dot-plot-label {
+  font-size: 0.7rem;
+  color: var(--text-primary);
+}
+
+
+.dot-plot-track {
+  position: relative;
+  height: 6px;
+  border-radius: 3px;
+  background-color: var(--bg-input);
+}
+
+
+.dot-plot-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 3px;
+  opacity: 0.35;
+}
+
+
+.dot-plot-dot {
+  position: absolute;
+  top: 50%;
+  border-radius: 50%;
+  border: 2px solid var(--bg-card);
+  transform: translate(-50%, -50%);
+  transition: width 0.15s ease, height 0.15s ease;
+}
+
+
+.dot-plot-value {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.dot-plot-share {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+
+/* ---------- PICTOGRAM (waffle grid) ---------- */
+
+.pictogram {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+
+.pictogram-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 2px;
+  width: 160px;
+  flex-shrink: 0;
+}
+
+
+.pictogram-cell {
+  aspect-ratio: 1;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+
+.pictogram-legend {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+
+.pictogram-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.68rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 0.2rem 0.3rem;
+  margin: -0.2rem -0.3rem;
+  border-radius: 6px;
+}
+
+.pictogram-legend-item:hover {
+  background-color: var(--bg-input);
+}
+
+.pictogram-legend-item strong {
+  margin-left: auto;
+}
+
+
+.pictogram-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+
+/* ---------- TIMELINE ---------- */
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.timeline-row {
+  display: flex;
+  gap: 0.7rem;
+  padding: 0.3rem 0.35rem;
+  margin: 0 -0.35rem;
+  border-radius: 6px;
+}
+
+.timeline-row-clickable {
+  cursor: pointer;
+}
+
+.timeline-row-clickable:hover,
+.timeline-row-active {
+  background-color: var(--bg-input);
+}
+
+
+.timeline-spine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 10px;
+  flex-shrink: 0;
+}
+
+
+.timeline-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-green);
+  margin-top: 0.35rem;
+  flex-shrink: 0;
+}
+
+
+.timeline-line {
+  flex: 1;
+  width: 2px;
+  background-color: var(--border-color);
+  margin-top: 0.2rem;
+}
+
+
+.timeline-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding-bottom: 0.85rem;
+}
+
+
+.timeline-when {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+}
+
+.timeline-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.timeline-subtitle {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.timeline-extra {
+  font-size: 0.62rem;
+  color: var(--accent-green);
+  margin-top: 0.15rem;
+}
+
+
+/* ---------- RISK BARS ---------- */
+
+.risk-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+
+.risk-bars-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.62rem;
+  color: var(--text-muted);
+}
+
+
+.risk-bars-legend-title {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.58rem;
+}
+
+
+.risk-bars-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+
+.risk-bars-legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background-color: var(--text-primary);
+  display: inline-block;
+}
+
+
+.risk-bars-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+
+.risk-bars-row {
+  display: grid;
+  grid-template-columns: 84px 1fr 28px;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+
+.risk-bars-row-clickable {
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 0.2rem 0.3rem;
+  margin: -0.2rem -0.3rem;
+}
+
+.risk-bars-row-clickable:hover {
+  background-color: var(--bg-input);
+}
+
+
+.risk-bars-row-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+
+.risk-bars-track {
+  height: 16px;
+  border-radius: 6px;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+
+.risk-bars-fill {
+  height: 100%;
+  display: flex;
+}
+
+
+.risk-bars-segment {
+  height: 100%;
+}
+
+.risk-bars-segment + .risk-bars-segment {
+  border-left: 2px solid var(--bg-card);
+}
+
+
+.risk-bars-row-total {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: right;
+}
+
+
+/* ---------- RISK MATRIX (unused — kept for reference; see RiskBars) ---------- */
+
+.risk-matrix {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+
+.risk-matrix-col-label {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+
+.risk-matrix-grid-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+.risk-matrix-row-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+
+.risk-matrix-grid {
+  display: grid;
+  grid-template-columns: 70px repeat(3, 64px);
+  grid-auto-rows: 64px;
+  gap: 4px;
+}
+
+
+.risk-matrix-corner {
+  background: transparent;
+}
+
+
+.risk-matrix-axis-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+
+.risk-matrix-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+
+.risk-matrix-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 700;
+  min-width: 20px;
+  min-height: 20px;
+}
+
+
+/* ---------- DEADLINE LIST ---------- */
+
+.deadline-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+
+.deadline-item {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+}
+
+
+.deadline-date {
+  flex-shrink: 0;
+  min-width: 52px;
+  text-align: center;
+
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+
+  padding: 0.3rem 0.4rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--accent-green);
+}
+
+
+.deadline-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+
+.deadline-label {
+  font-size: 0.72rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+
+.deadline-project {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+
+/* ---------- ACQUISITION TREND — POSTER CARD ---------- */
+
+.poster-card {
+  background: #0d0f14;
+  border-radius: 10px;
+  padding: 1.1rem 1.1rem 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.poster-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.7rem;
+}
+
+.poster-tags {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.poster-tag {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 0.28rem 0.55rem;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #f1f5f9;
+}
+
+.poster-tag-fill {
+  background: #f1f5f9;
+  color: #0d0f14;
+  border-color: transparent;
+}
+
+.poster-mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--accent-green-bg);
+  border: 1px solid var(--accent-green-border);
+  color: var(--accent-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+.poster-headline {
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px #f1f5f9;
+  margin: 0 0 0.15rem;
+}
+
+.poster-headline-sub {
+  font-size: 0.66rem;
+  color: var(--text-muted);
+  font-weight: 650;
+  margin-bottom: 0.9rem;
+}
+
+.poster-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.55rem;
+  height: 185px;
+}
+
+.poster-bar-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.poster-bar {
+  position: relative;
+  border-radius: 3px 3px 0 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.5rem;
+  transform-box: fill-box;
+  transform-origin: bottom;
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), filter 0.2s ease;
+}
+
+.poster-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.poster-bar-col:hover .poster-bar {
+  transform: translateY(-6px);
+  filter: brightness(1.08);
+}
+
+/* held until the chart scrolls into view — see hooks/useInViewOnce.js */
+.poster-bar-pending {
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+
+.poster-bar-value {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #0d0f14;
+}
+
+.poster-bar-label {
+  margin-top: 0.5rem;
+  padding-bottom: 0.75rem;
+  text-align: center;
+  font-size: 0.64rem;
+  font-weight: 650;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+@media (max-width: 700px) {
+  .poster-headline {
+    font-size: 2rem;
+  }
+
+  .poster-bar-value {
+    font-size: 0.7rem;
+  }
+}

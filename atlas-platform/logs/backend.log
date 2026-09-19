@@ -1,0 +1,38 @@
+
+> atlas-backend@1.0.0 start
+> node src/server.js
+
+ATLAS backend running on port 5000
+[0mPOST /api/auth/login [32m200[0m 551.865 ms - 695[0m
+[0mGET /api/projects [32m200[0m 188.515 ms - 26836[0m
+[0mGET /api/projects [36m304[0m 6.011 ms - -[0m
+[0mGET /api/projects [36m304[0m 57.904 ms - -[0m
+[0mGET /api/projects [36m304[0m 4.634 ms - -[0m
+[0mGET /api/projects [36m304[0m 42.654 ms - -[0m
+[0mGET /api/projects [36m304[0m 5.051 ms - -[0m
+[DEV OTP] Sending 496816 to +91 9246291335
+[0mPOST /api/auth/landowner/request-otp [32m200[0m 544.659 ms - 102[0m
+[0mPOST /api/auth/landowner/verify-otp [32m200[0m 43.545 ms - 751[0m
+[0mGET /api/auth/me [32m200[0m 2.779 ms - 262[0m
+[0mGET /api/notifications [32m200[0m 18.725 ms - 36[0m
+[0mGET /api/notifications [36m304[0m 2.319 ms - -[0m
+[0mGET /api/complaints [32m200[0m 58.763 ms - 17[0m
+[0mGET /api/complaints [36m304[0m 2.853 ms - -[0m
+[0mGET /api/parcels [32m200[0m 68.126 ms - 2692[0m
+[0mGET /api/parcels [36m304[0m 3.387 ms - -[0m
+[0mGET /api/auth/me [36m304[0m 70.804 ms - -[0m
+[0mGET /api/documents [32m200[0m 78.763 ms - 16[0m
+[0mGET /api/documents [36m304[0m 2.974 ms - -[0m
+[0mGET /api/projects [33m401[0m 0.491 ms - 31[0m
+[0mGET /api/projects [33m401[0m 0.208 ms - 31[0m
+[0mPOST /api/auth/login [32m200[0m 119.013 ms - 695[0m
+[0mGET /api/projects [36m304[0m 174.282 ms - -[0m
+[0mGET /api/projects [36m304[0m 5.206 ms - -[0m
+[0mGET /api/projects [36m304[0m 43.138 ms - -[0m
+[0mGET /api/projects [36m304[0m 3.072 ms - -[0m
+[0mPOST /api/auth/login [32m200[0m 249.334 ms - 695[0m
+[0mPOST /api/auth/login [32m200[0m 127.790 ms - 695[0m
+[0mPOST /api/auth/login [32m200[0m 252.112 ms - 695[0m
+[0mPOST /api/auth/login [32m200[0m 121.282 ms - 687[0m
+[0mGET /api/projects [36m304[0m 49.224 ms - -[0m
+[0mGET /api/projects [36m304[0m 4.627 ms - -[0m

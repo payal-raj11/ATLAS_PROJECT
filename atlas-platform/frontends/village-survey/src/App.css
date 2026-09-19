@@ -1,0 +1,549 @@
+/* =========================================================
+   ATLAS — VILLAGE WORKBENCH
+   GLOBAL STYLES + DARK/LIGHT MODE
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+}
+
+/* =========================================================
+   APPLICATION
+   ========================================================= */
+
+.atlas-app {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+
+  background: var(--bg-main);
+  color: var(--text-primary);
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.atlas-sidebar {
+  width: 295px;
+  min-width: 295px;
+  height: 100vh;
+
+  position: sticky;
+  top: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 18px 14px;
+
+  background: var(--bg-card);
+  border-right: 1px solid var(--border-color);
+
+  overflow-y: auto;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* PROFILE */
+
+.atlas-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 2px 6px 24px;
+}
+
+.atlas-avatar {
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #0ea5e9;
+  color: white;
+
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.atlas-profile-name {
+  color: var(--text-primary);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.atlas-profile-village {
+  margin-top: 4px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.atlas-navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.atlas-navigation a {
+  display: flex;
+  align-items: center;
+
+  min-height: 48px;
+  padding: 0 14px;
+
+  border-radius: 9px;
+
+  color: var(--text-primary);
+  text-decoration: none;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  transition: background 0.15s ease;
+}
+
+.atlas-navigation a:hover {
+  background: rgba(148, 163, 184, 0.12);
+}
+
+.atlas-navigation a.active {
+  background: #2161f5;
+  color: white;
+  font-weight: 800;
+}
+
+/* =========================================================
+   SYNC
+   ========================================================= */
+
+.atlas-sync {
+  padding: 18px 6px 2px;
+
+  color: var(--text-muted);
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.atlas-sync span {
+  color: var(--accent-green);
+  margin-left: 4px;
+}
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.atlas-main {
+  min-width: 0;
+  flex: 1;
+
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background: var(--bg-main);
+
+  transition: background 0.2s ease;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.atlas-header {
+  height: 64px;
+  min-height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 22px;
+
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border-color);
+
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* BRAND */
+
+.atlas-brand {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.atlas-brand-icon {
+  margin-right: 8px;
+  font-size: 21px;
+}
+
+.atlas-brand-name {
+  color: var(--text-primary);
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.atlas-brand-divider {
+  margin: 0 10px;
+  color: var(--text-muted);
+  font-size: 18px;
+}
+
+.atlas-brand-title {
+  color: var(--text-primary);
+  font-size: 21px;
+  font-weight: 800;
+}
+
+/* =========================================================
+   HEADER RIGHT
+   ========================================================= */
+
+.header-meta {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.atlas-alerts {
+  color: #f59e0b;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+/* =========================================================
+   THEME BUTTON
+   ========================================================= */
+
+.theme-btn {
+  height: 38px;
+
+  padding: 0 16px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  border: 1px solid #475569;
+  border-radius: 20px;
+
+  background: #334155;
+  color: #facc15;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.theme-btn:hover {
+  background: #475569;
+}
+
+.theme-btn .dot {
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+
+  background: #fbbf24;
+}
+
+/* =========================================================
+   WORKBENCH
+   ========================================================= */
+
+.atlas-workbench {
+  flex: 1;
+
+  min-width: 0;
+
+  overflow-y: auto;
+
+  padding: 26px 28px 40px;
+
+  background: var(--bg-main);
+
+  transition: background 0.2s ease;
+}
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+.atlas-dark-mode {
+  --page-bg: #0b1120;
+  --page-card: #131d33;
+  --page-input: #0a0f1d;
+  --page-border: #1e293b;
+  --page-text: #f1f5f9;
+  --page-muted: #64748b;
+}
+
+/* =========================================================
+   LIGHT MODE
+   ========================================================= */
+
+.atlas-light-mode {
+  --page-bg: #f1f5f9;
+  --page-card: #ffffff;
+  --page-input: #f8fafc;
+  --page-border: #cbd5e1;
+  --page-text: #0f172a;
+  --page-muted: #64748b;
+}
+
+/* =========================================================
+   IMPORTANT:
+   OVERRIDE DARK TAILWIND CLASSES USED INSIDE PAGES
+   ========================================================= */
+
+/* Main backgrounds */
+
+.atlas-light-mode .bg-slate-900,
+.atlas-light-mode .bg-slate-950 {
+  background-color: #f1f5f9 !important;
+}
+
+.atlas-light-mode .bg-slate-800 {
+  background-color: #ffffff !important;
+}
+
+.atlas-light-mode .bg-slate-700 {
+  background-color: #e2e8f0 !important;
+}
+
+.atlas-light-mode .bg-slate-600 {
+  background-color: #cbd5e1 !important;
+}
+
+/* Inputs */
+
+.atlas-light-mode .bg-slate-800 input,
+.atlas-light-mode .bg-slate-800 textarea,
+.atlas-light-mode input,
+.atlas-light-mode textarea {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Text */
+
+.atlas-light-mode .text-white {
+  color: #0f172a !important;
+}
+
+.atlas-light-mode .text-slate-100 {
+  color: #0f172a !important;
+}
+
+.atlas-light-mode .text-slate-200 {
+  color: #1e293b !important;
+}
+
+.atlas-light-mode .text-slate-300 {
+  color: #334155 !important;
+}
+
+.atlas-light-mode .text-slate-400 {
+  color: #64748b !important;
+}
+
+.atlas-light-mode .text-slate-500 {
+  color: #64748b !important;
+}
+
+/* Borders */
+
+.atlas-light-mode .border-slate-700,
+.atlas-light-mode .border-slate-600 {
+  border-color: #cbd5e1 !important;
+}
+
+.atlas-light-mode .border-slate-800 {
+  border-color: #e2e8f0 !important;
+}
+
+/* Hover */
+
+.atlas-light-mode .hover\:bg-slate-500\/20:hover {
+  background-color: #f1f5f9 !important;
+}
+
+/* =========================================================
+   LIGHT MODE — CARDS
+   ========================================================= */
+
+.atlas-light-mode .rounded-xl {
+  border-color: #cbd5e1;
+}
+
+/* =========================================================
+   TABLES
+   ========================================================= */
+
+.atlas-light-mode table {
+  color: #0f172a;
+}
+
+.atlas-light-mode th {
+  color: #64748b !important;
+}
+
+.atlas-light-mode td {
+  color: #334155;
+}
+
+.atlas-light-mode tr {
+  border-color: #e2e8f0 !important;
+}
+
+/* =========================================================
+   DARK MODE INPUTS
+   ========================================================= */
+
+.atlas-dark-mode input,
+.atlas-dark-mode textarea {
+  background-color: #0a0f1d;
+  color: #f1f5f9;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+.atlas-workbench::-webkit-scrollbar,
+.atlas-sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.atlas-workbench::-webkit-scrollbar-track,
+.atlas-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.atlas-workbench::-webkit-scrollbar-thumb,
+.atlas-sidebar::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
+}
+
+.atlas-workbench::-webkit-scrollbar-thumb:hover,
+.atlas-sidebar::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .atlas-sidebar {
+    width: 245px;
+    min-width: 245px;
+  }
+
+  .atlas-navigation a {
+    font-size: 14px;
+  }
+
+  .atlas-brand-name,
+  .atlas-brand-title {
+    font-size: 18px;
+  }
+
+  .atlas-workbench {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 800px) {
+  .atlas-sidebar {
+    width: 210px;
+    min-width: 210px;
+  }
+
+  .atlas-header {
+    padding: 0 14px;
+  }
+
+  .atlas-workbench {
+    padding: 18px;
+  }
+
+  .atlas-alerts {
+    display: none;
+  }
+}
+
+@media (max-width: 650px) {
+  .atlas-sidebar {
+    width: 185px;
+    min-width: 185px;
+  }
+
+  .atlas-profile-name {
+    font-size: 13px;
+  }
+
+  .atlas-profile-village {
+    font-size: 11px;
+  }
+
+  .atlas-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .atlas-navigation a {
+    padding: 0 9px;
+    font-size: 12px;
+  }
+
+  .atlas-brand-title,
+  .atlas-brand-divider {
+    display: none;
+  }
+
+  .atlas-brand-name {
+    font-size: 17px;
+  }
+}

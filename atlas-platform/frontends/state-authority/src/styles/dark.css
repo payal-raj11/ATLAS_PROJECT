@@ -1,0 +1,26 @@
+[data-theme="dark"] {
+  --background: #080f1d;
+  --sidebar: #0b1424;
+  --header: #0b1424;
+
+  --surface: #111d33;
+  --surface-hover: #15243d;
+  --surface-secondary: #0e192c;
+
+  --border: #22314a;
+  --border-light: #1a2940;
+
+  --text-primary: #f4f7fb;
+  --text-secondary: #9aa9bd;
+  --text-muted: #718198;
+
+  --input-bg: #0c1729;
+
+  --table-header: #0e192b;
+  --table-row-hover: #14233a;
+
+  --progress-bg: #25344b;
+
+  --shadow:
+    0 8px 24px rgba(0, 0, 0, 0.18);
+}

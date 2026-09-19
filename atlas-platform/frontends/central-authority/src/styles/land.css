@@ -1,0 +1,602 @@
+/* =========================================================
+   LAND & IMPACT MODULE
+   =========================================================
+   Reuses component classes already defined in dashboard.css,
+   project-details.css and projects.css (kpi-card, donut, bar-list,
+   attention-table, record-tabs, impact-grid, status/risk badges) so
+   this module matches the rest of the app rather than redefining a
+   second design system. Additions below are the genuinely new
+   pieces this page needed.
+   ========================================================= */
+
+.land-module {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.land-module-header h2 {
+  margin: 0 0 0.2rem;
+}
+
+.land-module-header p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.land-module-tabs {
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.land-module-tabs a {
+  display: inline-flex;
+  align-items: center;
+  height: 46px;
+  padding: 0 13px;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  font-size: 0.66rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.land-module-tabs a:hover {
+  color: var(--text-primary);
+}
+
+.land-module-tabs a.active {
+  color: var(--accent-green);
+  border-bottom-color: var(--accent-green);
+}
+
+.land-module-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.land-loading {
+  padding: 3rem 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+
+/* KPI grid variants */
+.dashboard-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.dashboard-grid-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+@media (max-width: 1300px) {
+  .dashboard-grid-6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .dashboard-grid-4,
+  .dashboard-grid-6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* Colored KPI icon circles — Overview's 6-up row */
+.kpi-icon-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.kpi-icon-blue { background: var(--info-blue-bg); color: var(--info-blue-text); }
+.kpi-icon-green { background: var(--accent-green-bg); color: var(--accent-green); }
+.kpi-icon-purple { background: rgba(139, 92, 246, 0.14); color: #8b5cf6; }
+.kpi-icon-orange { background: rgba(245, 158, 11, 0.14); color: #f59e0b; }
+.kpi-icon-teal { background: rgba(20, 184, 166, 0.14); color: #14b8a6; }
+.kpi-icon-red { background: rgba(239, 68, 68, 0.12); color: #ef4444; }
+
+
+/* Three-column hero row: map / progress chart / land-use donut */
+.land-hero-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 0.9fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+@media (max-width: 1300px) {
+  .land-hero-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Impact Overview — 3 tone tiles */
+.impact-tone-tiles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.impact-tone-tile {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.7rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-input);
+}
+
+.impact-tone-tile .kpi-icon-circle {
+  width: 38px;
+  height: 38px;
+}
+
+.impact-tone-tile-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.impact-tone-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.impact-tone-label {
+  font-size: 0.68rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.impact-tone-note {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+}
+
+
+/* Key Insights — 4 callout cards */
+.insight-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+}
+
+@media (max-width: 1100px) {
+  .insight-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.insight-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: 9px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-input);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.insight-card:hover {
+  transform: translateY(-1px);
+}
+
+.insight-card-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.insight-green { border-color: var(--accent-green-border); }
+.insight-green .insight-card-icon { background: var(--accent-green-bg); color: var(--accent-green); }
+
+.insight-purple .insight-card-icon { background: rgba(139, 92, 246, 0.14); color: #8b5cf6; }
+
+.insight-orange .insight-card-icon { background: rgba(245, 158, 11, 0.14); color: #f59e0b; }
+
+.insight-red { border-color: rgba(239, 68, 68, 0.35); }
+.insight-red .insight-card-icon { background: rgba(239, 68, 68, 0.12); color: #ef4444; }
+
+.insight-card-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.insight-card-body {
+  font-size: 0.66rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+
+/* Records & Compliance — donut + metric list, reuses donut-legend look */
+.records-status-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media (max-width: 700px) {
+  .records-status-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.records-metric-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.records-metric-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.68rem;
+}
+
+.records-metric-label {
+  flex: 1;
+  color: var(--text-primary);
+}
+
+.records-metric-track {
+  display: block;
+  width: 90px;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--gridline);
+  overflow: hidden;
+}
+
+.records-metric-fill {
+  display: block;
+  height: 100%;
+  background: var(--accent-green);
+  border-radius: 3px;
+}
+
+.records-metric-value {
+  min-width: 34px;
+  text-align: right;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+
+/* State distribution mini list + Quick Actions, bottom-right pair */
+.land-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .land-bottom-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.state-dist-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.state-dist-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.72rem;
+  cursor: pointer;
+  padding: 0.3rem 0.4rem;
+  margin: -0.3rem -0.4rem;
+  border-radius: 6px;
+}
+
+.state-dist-row:hover {
+  background: var(--bg-input);
+}
+
+.state-dist-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.state-dist-label {
+  flex: 1;
+  color: var(--text-primary);
+}
+
+.state-dist-value {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.quick-actions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.quick-actions-list a,
+.quick-actions-list button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.quick-actions-list a:hover,
+.quick-actions-list button:hover {
+  border-color: var(--accent-green-border);
+  background: var(--accent-green-bg);
+  color: var(--accent-green);
+}
+
+
+/* Land Details — Land Type sub-tab: legend list beside the donut */
+.land-details-tabs {
+  margin-bottom: 1rem;
+}
+
+.land-details-split {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media (max-width: 700px) {
+  .land-details-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.land-details-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.land-details-list li {
+  display: grid;
+  grid-template-columns: 10px 1fr auto auto;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.72rem;
+}
+
+.land-details-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.land-details-list-label {
+  color: var(--text-primary);
+}
+
+.land-details-list-value {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.land-details-list-pct {
+  font-weight: 700;
+  color: var(--text-primary);
+  min-width: 32px;
+  text-align: right;
+}
+
+
+/* Impact Assessment — key findings */
+.land-key-findings {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0 0 0 1.1rem;
+  font-size: 0.72rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+
+/* Recent Projects / Impact Trend tables — project name as a link */
+.attention-table a {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.attention-table a:hover {
+  color: var(--accent-green);
+}
+
+
+/* Compensation status badges */
+.status-badge.disbursed {
+  background: var(--accent-green-bg);
+  color: var(--accent-green);
+  border: 1px solid var(--accent-green-border);
+}
+
+.status-badge.partial {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+
+/* Overview — state filter bar, applies to KPIs/donut/table/map below */
+.land-filter-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+.land-filter-bar label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.land-filter-bar select {
+  height: 32px;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: 6px;
+  padding: 0 0.5rem;
+  font-size: 0.7rem;
+  min-width: 180px;
+}
+
+.land-filter-active {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.68rem;
+  color: var(--accent-green);
+  background: var(--accent-green-bg);
+  border: 1px solid var(--accent-green-border);
+  border-radius: 6px;
+  padding: 0.35rem 0.7rem;
+}
+
+.land-filter-active button {
+  background: none;
+  border: none;
+  color: var(--accent-green);
+  font-weight: 700;
+  font-size: 0.65rem;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.land-grid-filtered .kpi-card {
+  border-color: var(--accent-green-border);
+  box-shadow: 0 0 0 1px var(--accent-green-border);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+/* ---------- COMBO CHART (bar + index line, tabbed) ---------- */
+
+.combo-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.combo-chart-legend {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.64rem;
+  color: var(--text-muted);
+}
+
+.combo-chart-legend span {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.combo-swatch {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.combo-swatch-bar { background: var(--series-1); }
+.combo-swatch-line { background: var(--accent-green); border-radius: 50%; }
+
+.combo-chart-svg {
+  width: 100%;
+  height: 200px;
+  display: block;
+}
+
+.combo-chart-detail {
+  min-height: 2.2em;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.combo-chart-detail strong {
+  color: var(--text-primary);
+  font-size: 0.72rem;
+}
+
+
+/* Tab pills used for the combo chart's Social/Economic/Environmental switch */
+.chart-tab-pills {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.chart-tab-pills button {
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chart-tab-pills button.active {
+  background: var(--accent-green-bg);
+  border-color: var(--accent-green-border);
+  color: var(--accent-green);
+}
